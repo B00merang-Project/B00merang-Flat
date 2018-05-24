@@ -1097,7 +1097,7 @@ StScrollBar {
 #dash {
 	font-size: 20pt;
 	background-gradient-direction: none;
-	background-color: rgba(248, 248, 249, 1);
+	background-color: rgba(248, 248, 249, 0.75);
     border: none;
 	box-shadow: 0;
 	padding: 0 0;

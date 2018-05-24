@@ -657,8 +657,8 @@ menu, .menu {
 
 .csd menu, .csd.menu {
     padding: 4px 0px;
-    border-radius: 2px;
-    border: 1px solid shade(@menu_bg_color, 0.9); }
+    border-radius: 0;
+    border: none; }
 
 .context-menu {
     font: initial; }
