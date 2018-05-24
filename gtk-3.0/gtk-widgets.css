@@ -413,12 +413,12 @@ iconview:selected:backdrop, iconview selection:backdrop, iconview text:selected:
     color: @theme_unfocused_selected_fg_color;
     background-color: @theme_unfocused_selected_bg_color; }
 
-rubberband, flowbox rubberband, treeview.view rubberband, .content-view rubberband,.rubberband {
-    border-width: 1px;
-    border-style: solid;
-    border-color: shade(@theme_selected_bg_color, 0.9);
-    border-radius: 0;
-    background-color: alpha(@theme_selected_bg_color, 0.3); }
+rubberband, flowbox rubberband, treeview.view rubberband, .content-view rubberband, .rubberband, view rubberband, .view.rubberband, .rubberband {
+  border-width: 1px;
+  border-style: solid;
+  border-color: @theme_selected_bg_color;
+  background: none;
+  background-color: alpha(@theme_selected_bg_color, 0.3); }
 
 /* flowbox */
 flowbox flowboxchild {
@@ -635,6 +635,17 @@ arrow, combobox arrow {
     min-height: 16px;
     min-width: 16px; }
 
+.monospace {
+    font-family: Monospace; }
+
+.gedit-search-slider {
+    border-color: @borders;
+    padding: 6px;
+    border-radius: 0 0 2px 2px;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    background-color: @theme_bg_color; }
+
 /* menu */
 menu, .menu {
     margin: 4px;
@@ -757,7 +768,12 @@ popover, popover.background {
     color: @theme_fg_color;
     background-clip: border-box;
     background-color: @theme_bg_color;
-    box-shadow: 0 2px 5px 3px alpha(@dark_shadow, 0.5); }
+    box-shadow: 0 2px 5px 3px alpha(@dark_shadow, 0.25); }
+
+.csd popover, popover, .csd
+popover.background,
+popover.background {
+    border: 1px solid #cdd2d7; }
 
 popover.touch-selection, .csd popover.touch-selection, popover.background.touch-selection, .csd popover.background.touch-selection {
     font: initial; }
@@ -1141,13 +1157,13 @@ scale slider {
     margin: -8px; }
 
 scale.fine-tune.horizontal {
-    padding-top: 9px;
-    padding-bottom: 9px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     min-height: 16px; }
 
 scale.fine-tune.vertical {
-    padding-left: 9px;
-    padding-right: 9px;
+    padding-left: 10px;
+    padding-right: 10px;
     min-width: 16px; }
 
 scale.fine-tune slider {
@@ -1353,6 +1369,10 @@ button separator {
     border: none;
     background-color: transparent; }
 
+.sidebar view separator:backdrop, view separator:backdrop, .separator, separator:backdrop {
+    border: none;
+    background-color: transparent; }
+
 .primary-toolbar separator, toolbar separator {
     background-color: mix(@borders, @toolbar_bg_color, 0.5); }
 
@@ -1417,6 +1437,12 @@ placessidebar.sidebar row:selected, placessidebar.sidebar row:selected:hover, pl
 .sidebar frame, .sidebar.frame {
     border: none; }
 
+.sidebar scrollbar {
+    background-color: transparent; }
+    
+placessidebar.sidebar scrollbar slider, placessidebar.sidebar scrollbar slider:hover, placessidebar.sidebar scrollbar slider:active, placessidebar.sidebar scrollbar.overlay-indicator:not(.dragging):not(.hovering) slider {
+    background-color: @sidebar_fg_color; }
+
 paned .sidebar.left, paned .sidebar.right, paned .sidebar.left:dir(rtl), paned .sidebar:dir(rtl), paned .sidebar:dir(ltr), paned .sidebar {
     border: none; }
 
@@ -1459,7 +1485,8 @@ placessidebar row label.sidebar-label:dir(ltr) {
 placessidebar row label.sidebar-label:dir(rtl) {
     padding-left: 2px; }
 
-button.sidebar-button {
+button.sidebar-button,
+button.sidebar-button:backdrop {
     min-width: 22px;
     min-height: 22px;
     margin-top: 2px;
@@ -2411,7 +2438,7 @@ tooltip.csd decoration {
 messagedialog.background.csd {
 	border-radius: 0 0 3px 3px;
 	color: @theme_fg_color;
-    background-color: @theme_base_color; }
+    background-color: @theme_bg_color; }
 
 messagedialog.csd decoration {
     border-radius: 3px;

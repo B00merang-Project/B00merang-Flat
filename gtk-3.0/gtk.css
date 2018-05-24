@@ -68,8 +68,8 @@
 @define-color warning_color #FF9900;
 
 /* Widget colors */
-@define-color tooltip_bg_color #EDF5FC;
-@define-color tooltip_fg_color #000000;
+@define-color tooltip_bg_color @dark_bg_color;
+@define-color tooltip_fg_color @dark_fg_color;
 @define-color menu_bg_color @dark_bg_color;
 @define-color menu_fg_color @dark_fg_color;
 @define-color menubar_bg_color @dark_bg_color;

@@ -79,7 +79,7 @@ style "default" {
   bg[INSENSITIVE] = @insensitive_bg_color
   bg[ACTIVE] = shade (0.9, @bg_color)
 
-  fg[NORMAL] = @text_color
+  fg[NORMAL] = @fg_color
   fg[PRELIGHT] = @fg_color
   fg[SELECTED] = @selected_fg_color
   fg[INSENSITIVE] = @insensitive_fg_color
@@ -514,7 +514,7 @@ style "default" {
       function = RESIZE_GRIP
       state = NORMAL
       detail = "statusbar"
-      overlay_file = "assets/null.png"	
+      overlay_file = "assets/null.png"    
       overlay_border = { 0,0,0,0 }
       overlay_stretch = FALSE
     }
@@ -529,7 +529,6 @@ style "default" {
     }
   }
 }
-
 
 style "toplevel_hack" {
 
@@ -637,7 +636,7 @@ style "scrollbar" {
       orientation = HORIZONTAL
     }
 
-# X Verticals
+    # X Verticals
 
     image {
       function = SLIDER
@@ -677,6 +676,43 @@ style "scrollbar" {
   }
 }
 
+style "menubar" {
+  bg[NORMAL] = @menubar_bg
+  bg[PRELIGHT] = @selected_bg_color
+  bg[SELECTED] = @selected_bg_color
+  bg[ACTIVE] = @selected_bg_color
+  bg[INSENSITIVE] = @menubar_bg
+
+  fg[NORMAL] = @menubar_fg
+  fg[PRELIGHT] = @selected_fg_color
+  fg[SELECTED] = @selected_fg_color
+  fg[ACTIVE] = @selected_fg_color
+  fg[INSENSITIVE] = mix (0.5, @menubar_bg, @menubar_fg)
+
+  engine "murrine" {
+    roundness = 0
+  }
+}
+
+style "menubaritem" {
+  bg[NORMAL] = @menubar_bg
+  bg[PRELIGHT] = @selected_bg_color
+  bg[SELECTED] = @selected_bg_color
+  bg[ACTIVE] = shade(1.1, @selected_bg_color)
+  bg[INSENSITIVE] = @menubar_bg
+
+  fg[NORMAL] = @menubar_fg
+  fg[PRELIGHT] = @selected_fg_color
+  fg[SELECTED] = @selected_fg_color
+  fg[ACTIVE] = @selected_fg_color
+  fg[INSENSITIVE] = mix(0.5, @menubar_bg, @menubar_fg)
+
+  engine "murrine" {
+    roundness = 0
+    menubaritemstyle = 0
+  }
+}
+
 style "menu" {
 
   xthickness = 0
@@ -686,7 +722,11 @@ style "menu" {
 
   bg[NORMAL] = @menu_bg
   bg[INSENSITIVE] = @menu_bg
-  bg[PRELIGHT] = @menu_bg
+  bg[PRELIGHT] = @selected_bg_color
+  
+  fg[ACTIVE] = @selected_fg_color
+  fg[PRELIGHT] = @selected_fg_color
+  fg[SELECTED] = @selected_fg_color
 
   engine "pixmap" { # For menus that use horizontal lines rather than gtkseparator
 
@@ -718,23 +758,22 @@ style "menu_item"
   # highlight. The price to pay is black text on menus as well,
   # but at least it's readable.
   # See https://bugs.freedesktop.org/show_bug.cgi?id=38038
-  bg[SELECTED] = @selected_fg_color
+  bg[ACTIVE] = @selected_bg_color
+  bg[PRELIGHT] = @selected_bg_color
+  bg[SELECTED] = @selected_bg_color
 
-  fg[NORMAL] = @fg_color
+  fg[NORMAL] = @menu_fg
   fg[SELECTED] = @selected_fg_color
 
   fg[PRELIGHT] = @selected_fg_color
   text[PRELIGHT] = @selected_fg_color
 
-  engine "pixmap" {
+  engine "murrine" {
+      textstyle = 0
+      border_shades = { 1.2, 1.2 }
+  }
 
-    image {
-      function = BOX
-      state = PRELIGHT
-      file = "assets/menuitem.png"
-      border = { 1, 0, 1, 0 }
-      stretch = TRUE
-    }
+  engine "pixmap" {
 
     # Fix invisible scale trough on selected menuitems
 
@@ -747,16 +786,16 @@ style "menu_item"
       orientation = HORIZONTAL
     }
 
-    image {
-      function = SLIDER
-      state = PRELIGHT
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
-      stretch = TRUE
-      overlay_file = "assets/slider.png"
-      overlay_stretch = FALSE
-      orientation = HORIZONTAL
-    }
+#    image {
+#      function = SLIDER
+#      state = PRELIGHT
+#      file = "assets/null.png"
+#      border = { 0, 0, 0, 0 }
+#      stretch = TRUE
+#      overlay_file = "assets/slider.png"
+#      overlay_stretch = FALSE
+#      orientation = HORIZONTAL
+#    }
 
     # Check Buttons
 
@@ -977,8 +1016,8 @@ style "checkbutton" {
 
 style "entry" {
 
-  xthickness = 6
-  ythickness = 4
+  xthickness = 3
+  ythickness = 3
 
   engine "pixmap" {
 
@@ -1413,9 +1452,9 @@ style "spinbutton" {
       detail = "spinbutton_up"
       file = "assets/up-background-rtl.png"
       border = { 4, 1, 5, 0 }
-      stretch	= TRUE
+      stretch    = TRUE
       overlay_file = "assets/arrow-up-small-prelight.png"
-      overlay_stretch	= FALSE
+      overlay_stretch    = FALSE
       direction = RTL
     }
 
@@ -1607,129 +1646,19 @@ style "gimp_spin_scale" {
 
 style "notebook" {
 
-  xthickness = 5
+  xthickness = 2
   ythickness = 2
 
-  engine "pixmap" {
+  bg[NORMAL] = @notebook_bg
+  bg[ACTIVE] = @bg_color
 
-    image {
-      function = EXTENSION
-      state = ACTIVE
-      file = "assets/null.png"
-      border = { 0,0,0,0 }
-      stretch = TRUE
-      gap_side = TOP
-    }
-
-    image {
-      function = EXTENSION
-      state = ACTIVE
-      file = "assets/null.png"
-      border = { 0,0,0,0 }
-      stretch = TRUE
-      gap_side = BOTTOM
-    }
-
-    image {
-      function = EXTENSION
-      state = ACTIVE
-      file = "assets/null.png"
-      border = { 0,0,0,0 }
-      stretch = TRUE
-      gap_side = RIGHT
-    }
-
-    image {
-      function = EXTENSION
-      state = ACTIVE
-      file = "assets/null.png"
-      border = { 0,0,0,0 }
-      stretch = TRUE
-      gap_side = LEFT
-    }	
-
-    image {
-      function = EXTENSION
-      file = "assets/tab-top-active.png"
-      border = { 3,3,3,3 }
-      stretch = TRUE
-      gap_side = BOTTOM
-    }
-
-    image {
-      function = EXTENSION
-      file = "assets/tab-bottom-active.png"
-      border = { 3,3,3,3 }
-      stretch = TRUE
-      gap_side = TOP
-    }
-
-    image {
-      function = EXTENSION
-      file = "assets/tab-left-active.png"
-      border = { 3,3,3,3 }
-      stretch = TRUE
-      gap_side = RIGHT
-    }
-
-    image {
-      function = EXTENSION
-      file = "assets/tab-right-active.png"
-      border = { 3,3,3,3 }
-      stretch = TRUE
-      gap_side = LEFT
-    }
-
-    # How to draw boxes with a gap on one side (ie the page of a notebook)
-
-    image {
-      function = BOX_GAP
-      file = "assets/notebook.png" 
-      border = { 4, 4, 4, 4 }
-      stretch = TRUE
-      gap_file = "assets/notebook-gap-horiz.png"
-      gap_border = { 1, 1, 0, 0 }
-      gap_side = TOP
-    }
-
-    image {
-      function = BOX_GAP
-      file = "assets/notebook.png"
-      border = { 4, 4, 4, 4 }
-      stretch = TRUE
-      gap_file = "assets/notebook-gap-horiz.png"
-      gap_border = { 1, 1, 0, 0 }
-      gap_side = BOTTOM
-    }
-
-    image {
-      function = BOX_GAP
-      file = "assets/notebook.png"
-      border = { 4, 4, 4, 4 }
-      stretch = TRUE
-      gap_file = "assets/notebook-gap-vert.png"
-      gap_border = { 0, 0, 1, 1 }
-      gap_side = LEFT
-    }
-
-    image {
-      function = BOX_GAP
-      file = "assets/notebook.png" 
-      border = { 4, 4, 4, 4 }
-      stretch = TRUE
-      gap_file = "assets/notebook-gap-vert.png"
-      gap_border = { 0, 0, 1, 1 }
-      gap_side = RIGHT
-    }
-
-    # How to draw the box of a notebook when it isnt attached to a tab
-
-    image {
-      function = BOX
-      file = "assets/notebook.png"
-      border = { 4, 4, 4, 4 }
-      stretch = TRUE
-    }
+  engine "murrine" {
+    roundness = 2
+    glowstyle = 0
+    contrast = 0.3
+    glazestyle = 0
+    highlight_shade = 1.0
+    gradient_shades = { 1.0, 1.0, 1.0, 1.0 }
   }
 }
 
@@ -1769,7 +1698,7 @@ style "combobox" {
 
   xthickness = 0
   ythickness = 0
-
+  
 }
 
 style "combobox_button" {
@@ -1779,124 +1708,24 @@ style "combobox_button" {
 
 }
 
-style "range" {
+style "scale" {
+  bg[NORMAL] = @selected_bg_color
+  bg[PRELIGHT] = @selected_bg_color
+  bg[ACTIVE] = shade(0.935, @bg_color)
+  bg[SELECTED] = @selected_bg_color
+  bg[INSENSITIVE] = shade (0.95, @bg_color)
 
-  engine "pixmap" {
-
-    image {
-      function = BOX
-      detail = "trough-upper"
-      file = "assets/trough-horizontal.png"
-      border = { 8, 8, 0, 0 }
-      stretch = TRUE
-      orientation = HORIZONTAL
-    }
-
-    image {
-      function = BOX
-      detail = "trough-lower"
-      file = "assets/trough-horizontal-active.png"
-      border = { 8, 8, 0, 0 }
-      stretch = TRUE
-      orientation = HORIZONTAL
-    }
-
-    image {
-      function = BOX
-      detail = "trough-upper"
-      file = "assets/trough-vertical.png"
-      border = { 0, 0, 8, 8 }
-      stretch = TRUE
-      orientation = VERTICAL
-    }
-
-    image {
-      function = BOX
-      detail = "trough-lower"
-      file = "assets/trough-vertical-active.png"
-      border = { 0, 0, 8, 8 }
-      stretch = TRUE
-      orientation = VERTICAL
-    }
-
-    # Horizontal
-
-    image {
-      function = SLIDER
-      state = NORMAL
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
-      stretch = TRUE
-      overlay_file = "assets/slider.png"
-      overlay_stretch = FALSE
-      orientation = HORIZONTAL
-    }
-
-    image {
-      function = SLIDER
-      state = PRELIGHT
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
-      stretch = TRUE
-      overlay_file = "assets/slider-prelight.png"
-      overlay_stretch = FALSE
-      orientation = HORIZONTAL
-    }
-
-    image {
-      function = SLIDER
-      state = INSENSITIVE
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
-      stretch = TRUE
-      overlay_file = "assets/slider-insensitive.png"
-      overlay_stretch = FALSE
-      orientation = HORIZONTAL
-    }
-
-    # Vertical
-
-    image {
-      function = SLIDER
-      state = NORMAL
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
-      stretch = TRUE
-      overlay_file = "assets/slider.png"
-      overlay_stretch = FALSE
-      orientation = VERTICAL
-    }
-
-    image {
-      function = SLIDER
-      state = PRELIGHT
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
-      stretch = TRUE
-      overlay_file = "assets/slider-prelight.png"
-      overlay_stretch = FALSE
-      orientation = VERTICAL
-    }
-
-    image {
-      function = SLIDER
-      state = INSENSITIVE
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
-      stretch = TRUE
-      overlay_file = "assets/slider-insensitive.png"
-      overlay_stretch = FALSE
-      orientation = VERTICAL
-    }
-
-    # Function below removes ugly boxes
-
-    image {
-      function = BOX
-      file = "assets/null.png"
-      border = { 3, 3, 3, 3 }
-      stretch = TRUE
-    }
+  engine "murrine" {
+    roundness = 8
+    glowstyle = 0
+    contrast = 0.1
+    glazestyle = 0
+    sliderstyle = 0
+    highlight_shade = 1.0
+    border_shades = { 1.0, 1.0 }
+    trough_shades = { 1.0, 1.0 }
+    trough_border_shades = { 1.0, 1.0 }
+    gradient_shades = { 1.0, 1.0, 1.0, 1.0 }
   }
 }
 
@@ -1905,46 +1734,22 @@ style "progressbar" {
   xthickness = 1
   ythickness = 1
 
+  bg[NORMAL] = mix(0.06, @bg_color, @fg_color)
+  bg[ACTIVE] = shade(0.935, @bg_color)
+
   fg[NORMAL] = @fg_color
   fg[PRELIGHT] = @selected_fg_color
-
-  engine "pixmap" {
-
-    image {
-      function = BOX
-      detail = "trough"
-      file = "assets/trough-progressbar.png"
-      border = { 4, 4, 4, 4 }
-      stretch = TRUE
-      orientation = HORIZONTAL
-    }
-
-    image {
-      function = BOX
-      detail = "bar"
-      file = "assets/progressbar.png"
-      stretch = TRUE
-      border = { 3, 3, 3, 3 }
-      orientation = HORIZONTAL
-    }
-
-    image {
-      function = BOX
-      detail = "trough"
-      file = "assets/trough-progressbar_v.png"
-      border = { 4, 4, 4, 4 }
-      stretch = TRUE
-      orientation = VERTICAL
-    }
-
-    image {
-      function = BOX
-      detail = "bar"
-      file = "assets/progressbar_v.png"
-      stretch = TRUE
-      border = { 3, 3, 3, 3 }
-      orientation = VERTICAL
-    }
+  
+  engine "murrine" {
+    roundness = 6
+    glowstyle = 0
+    contrast = 0.1
+    glazestyle = 0
+    progressbarstyle = 0
+    highlight_shade = 1.0
+    border_shades = { 1.0, 1.0 }
+    trough_border_shades = { 1.065, 1.065 }
+    gradient_shades = { 1.0, 1.0, 1.0, 1.0 }
   }
 }
 
@@ -2105,14 +1910,19 @@ style "gimp_toolbox_frame" {
 
 style "toolbar" {
 
-  engine "pixmap" {
+  bg[NORMAL] = @bg_color
+  bg[PRELIGHT] = shade (1.02, @bg_color)
+  bg[SELECTED] = @selected_bg_color
+  bg[ACTIVE] = shade (0.9, @bg_color)
+  bg[INSENSITIVE] = @bg_color
 
-    image {
-      function = BOX
-      file  = "assets/toolbar.png"
-      stretch  = TRUE
-      border = { 1, 1, 1, 1 }
-    }
+  fg[NORMAL] = @fg_color
+  fg[PRELIGHT] = @fg_color
+  fg[SELECTED] = @selected_fg_color
+  fg[ACTIVE] = @fg_color
+  fg[INSENSITIVE] = mix(0.5, @bg_color, @fg_color)
+
+  engine "pixmap" {
 
     image {
       function = HANDLE
@@ -2146,14 +1956,19 @@ style "inline_toolbar" {
 
   GtkToolbar::button-relief = GTK_RELIEF_NORMAL
 
-  engine "pixmap" {
+  bg[NORMAL] = @bg_color
+  bg[PRELIGHT] = shade (1.02, @bg_color)
+  bg[SELECTED] = @selected_bg_color
+  bg[ACTIVE] = shade (0.9, @bg_color)
+  bg[INSENSITIVE] = @bg_color
 
-    image {
-      function = BOX
-      file = "assets/inline-toolbar.png"
-      stretch = TRUE
-      border = { 1, 1, 1, 1 }
-    }
+  fg[NORMAL] = @fg_color
+  fg[PRELIGHT] = @fg_color
+  fg[SELECTED] = @selected_fg_color
+  fg[ACTIVE] = @fg_color
+  fg[INSENSITIVE] = mix(0.5, @bg_color, @fg_color)
+
+  engine "murrine" {
   }
 }
 
@@ -2216,10 +2031,10 @@ style "xfwm-tabwin" {
   Xfwm4TabwinWidget::alpha = 1.0
   Xfwm4TabwinWidget::border-radius = 2
 
-	bg[NORMAL] = @bg_color
-	bg[SELECTED] = @bg_color
+    bg[NORMAL] = @bg_color
+    bg[SELECTED] = @bg_color
 
-	fg[NORMAL] = @fg_color
+    fg[NORMAL] = @fg_color
 
   engine "murrine" {
     contrast = 0.7
@@ -2266,84 +2081,87 @@ style "null" {
   }
 }
 
+class "GtkRange" style "scale"
+class "GtkWidget" style "default"
+class "GtkScrollbar" style "scrollbar"
+class "GtkButton" style "button"
+class "GtkEntry" style "entry"
+class "GtkOldEditable" style "entry"
+class "GtkSpinButton" style "spinbutton"
+class "GtkNotebook" style "notebook"
+# class "GtkRange" style "range"
+class "GtkProgressBar" style "progressbar"
+class "GtkSeparatorMenuItem" style "separator_menu_item"
+class "GtkScrolledWindow" style "scrolled_window"
+class "GtkFrame" style "frame"
+class "GtkTreeView" style "treeview"
+class "GtkToolbar" style "toolbar"
+class "*HandleBox" style "toolbar"
 
-class "GtkWidget"                                                   style "default"
-class "GtkScrollbar"                                                style "scrollbar"
-class "GtkButton"                                                   style "button"
-class "GtkEntry"                                                    style "entry"
-class "GtkOldEditable"                                              style "entry"
-class "GtkSpinButton"                                               style "spinbutton"
-class "GtkNotebook"                                                 style "notebook"
-class "GtkRange"                                                    style "range"
-class "GtkProgressBar"                                              style "progressbar"
-class "GtkSeparatorMenuItem"                                        style "separator_menu_item"
-class "GtkScrolledWindow"                                           style "scrolled_window"
-class "GtkFrame"                                                    style "frame"
-class "GtkTreeView"                                                 style "treeview"
-class "GtkToolbar"                                                  style "toolbar"
-class "*HandleBox"                                                  style "toolbar"
-
-widget_class "*<GtkMenu>*"                                          style "menu"
-widget_class "*<GtkMenu>*"                                          style "menu_framed_box"
-widget_class "*<GtkMenuItem>*"                                      style "menu_item"
-widget_class "*<GtkCheckButton>*"                                   style "checkbutton"
-widget_class "*<GtkComboBox>"                                       style "combobox"
-widget_class "*<GtkComboBox>*<GtkButton>"                           style "combobox_button"
-widget_class "*<GtkComboBox>*<GtkSeparator>"                        style "combobox_separator"
-widget_class "*<GtkTreeView>*<GtkButton>*"                          style "treeview_header"
-widget_class "*<GtkFileChooserDefault>*<GtkToolbar>"                style "inline_toolbar"
-widget_class "*<GtkComboBoxEntry>*<GtkEntry>"                       style "combobox_entry"
-widget_class "*<GtkComboBoxEntry>*<GtkButton>"                      style "combobox_entry_button"
-widget_class "*<GtkNotebook>*<GtkScrolledWindow>*<GtkViewport>"     style "notebook_viewport"
-widget_class "*HandleBox"                                           style "toolbar"
+widget_class "*<GtkMenuBar>*" style "menubar"
+widget_class "*<GtkMenuBar>*<GtkMenuItem>*" style "menubaritem"
+widget_class "*<GtkMenu>*" style "menu"
+#widget_class "*<GtkMenu>*" style "menu_framed_box"
+widget_class "*<GtkMenuItem>*" style "menu_item"
+widget_class "*<GtkCheckButton>*" style "checkbutton"
+widget_class "*<GtkComboBox>" style "combobox"
+widget_class "*<GtkComboBox>*<GtkButton>" style "combobox_button"
+widget_class "*<GtkComboBox>*<GtkSeparator>" style "combobox_separator"
+widget_class "*<GtkTreeView>*<GtkButton>*" style "treeview_header"
+widget_class "*<GtkFileChooserDefault>*<GtkToolbar>" style "inline_toolbar"
+widget_class "*<GtkComboBoxEntry>*<GtkEntry>" style "combobox_entry"
+widget_class "*<GtkComboBoxEntry>*<GtkButton>" style "combobox_entry_button"
+widget_class "*<GtkNotebook>*<GtkScrolledWindow>*<GtkViewport>" style "notebook"
+# widget_class "*<GtkNotebook>*<GtkScrolledWindow>*<GtkViewport>" style "notebook_viewport"
+widget_class "*HandleBox" style "toolbar"
 
 # Entries in notebooks draw with notebook's base color, but not if there's
 # something else in the middle that draws gray again
-widget_class "*<GtkNotebook>*<GtkEntry>"                                    style "notebook_entry"
-widget_class "*<GtkNotebook>*<GtkEventBox>*<GtkEntry>"                      style "entry"
+widget_class "*<GtkNotebook>*<GtkEntry>" style "notebook_entry"
+widget_class "*<GtkNotebook>*<GtkEventBox>*<GtkEntry>" style "entry"
 
-widget_class "*<GtkNotebook>*<GtkComboBoxEntry>*<GtkEntry>"                 style "notebook_combobox_entry"
-widget_class "*<GtkNotebook>*<GtkEventBox>*<GtkComboBoxEntry>*<GtkEntry>"   style "combobox_entry"
+widget_class "*<GtkNotebook>*<GtkComboBoxEntry>*<GtkEntry>" style "notebook_combobox_entry"
+widget_class "*<GtkNotebook>*<GtkEventBox>*<GtkComboBoxEntry>*<GtkEntry>" style "combobox_entry"
 
 # We also need to avoid changing fg color for the inactive notebook tab labels
-widget_class "*<GtkNotebook>.<GtkLabel>"                            style "notebook_tab_label"
+widget_class "*<GtkNotebook>.<GtkLabel>" style "notebook_tab_label"
 
 # GTK tooltips
-widget "gtk-tooltip*"                                               style "tooltips"
+widget "gtk-tooltip*" style "tooltips"
 
 #Fix GVim tabs
-widget_class "*<GtkNotebook>*<GtkEventBox>"                         style "notebook_eventbox"
+widget_class "*<GtkNotebook>*<GtkEventBox>" style "notebook_eventbox"
 
 # Xchat special cases
-widget "*xchat-inputbox"                                            style "entry"
+widget "*xchat-inputbox" style "entry"
 
 # GIMP
 # Disable gradients completely for GimpSpinScale
-#class "GimpSpinScale"                                               style "gimp_spin_scale"
+#class "GimpSpinScale"           style "gimp_spin_scale"
 
 # Remove borders from "Wilbert frame" in Gimp
-widget_class "*<GimpToolbox>*<GtkFrame>"                            style "gimp_toolbox_frame"
+widget_class "*<GimpToolbox>*<GtkFrame>" style "gimp_toolbox_frame"
 
 # Chrome/Chromium
-widget_class "*Chrom*Button*"                                       style "button"
-widget_class "*<GtkCustomMenu>*<GtkCustomMenuItem>*"                style "chrome_menu_item"
+widget_class "*Chrom*Button*" style "button"
+widget_class "*<GtkCustomMenu>*<GtkCustomMenuItem>*" style "chrome_menu_item"
 
 # Eclipse/SWT
-widget "gtk-tooltips*"                                              style "eclipse-tooltips"
-widget "*swt-toolbar-flat"                                          style "null"
+widget "gtk-tooltips*" style "eclipse-tooltips"
+widget "*swt-toolbar-flat" style "null"
 
 # Openoffice, Libreoffice
-class "GtkWindow"                                                   style "toplevel_hack"
-widget "*openoffice-toplevel*"                                      style "ooo_stepper_hack"
+class "GtkWindow" style "toplevel_hack"
+widget "*openoffice-toplevel*" style "ooo_stepper_hack"
 
 # Xfce
-widget_class "*XfdesktopIconView*"                                  style "xfdesktop-icon-view"
-widget "xfwm4-tabwin*"                                              style "xfwm-tabwin"
-widget "xfwm4-tabwin*GtkButton*"                                    style "xfwm-tabwin-button"
+widget_class "*XfdesktopIconView*" style "xfdesktop-icon-view"
+widget "xfwm4-tabwin*" style "xfwm-tabwin"
+widget "xfwm4-tabwin*GtkButton*" style "xfwm-tabwin-button"
 
 # Fixes ugly text shadows for insensitive text
-widget_class "*<GtkLabel>"                                          style "text"
-widget_class "*<GtkMenu>*<GtkLabel>"                                style "menu_text" 
-widget_class "*<GtkComboBox>*<GtkCellLayout>"                       style "text"
-widget_class "*<GtkNotebook>*<GtkLabel>"                            style "text"
-widget_class "*<GtkNotebook>*<GtkCellLayout>"                       style "text"
+widget_class "*<GtkLabel>" style "text"
+widget_class "*<GtkMenu>*<GtkLabel>" style "menu_text" 
+widget_class "*<GtkComboBox>*<GtkCellLayout>" style "text"
+widget_class "*<GtkNotebook>*<GtkLabel>" style "text"
+widget_class "*<GtkNotebook>*<GtkCellLayout>" style "text"

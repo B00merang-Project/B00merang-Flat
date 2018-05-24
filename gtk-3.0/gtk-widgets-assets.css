@@ -27,7 +27,7 @@ check:indeterminate, check row:selected:indeterminate, check row:selected:focus:
     -gtk-icon-source: -gtk-scaled(url("assets/checkbox-mixed.png"), url("assets/checkbox-mixed@2.png")); }
 
 check:indeterminate:backdrop, check row:selected:indeterminate:backdrop, check row:selected:focus:indeterminate:backdrop {
-    -gtk-icon-source: -gtk-scaled(url("assets/checkbox-mixed-unfocused.png"), (url("assets/checkbox-mixed-unfocused@2.png")); }
+    -gtk-icon-source: -gtk-scaled(url("assets/checkbox-mixed-unfocused.png"), url("assets/checkbox-mixed-unfocused@2.png")); }
 
 check:indeterminate:disabled, check row:selected:indeterminate:disabled, check row:selected:focus:indeterminate:disabled {
     -gtk-icon-source: -gtk-scaled(url("assets/checkbox-mixed-insensitive.png"), url("assets/checkbox-mixed-insensitive@2.png")); }
