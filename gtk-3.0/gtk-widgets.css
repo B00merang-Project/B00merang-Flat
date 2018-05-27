@@ -23,26 +23,11 @@
 /* base states */
 .background {
     color: @theme_fg_color;
-    background-color: @theme_bg_color; }
+    background-color: alpha(@theme_bg_color, 0.999); }
 
 .background:backdrop {
     color: @theme_unfocused_fg_color; 
     background-color: @theme_unfocused_bg_color; }
-
-*:selected, *:selected:focus {
-    color: @theme_selected_fg_color;
-    background-color: @theme_selected_bg_color; }
-
-*:selected:backdrop, *:selected:focus:backdrop {
-    border-color: @theme_unfocused_borders;
-    color: @theme_unfocused_selected_bf_color;
-    background-color: @theme_unfocused_selected_bg_color; }
-
-*:disabled, *:disabled:disabled {
-    color: @theme_disabled_fg_color; }
-
-*:disabled:backdrop, *:disabled:disabled:backdrop {
-    color: @theme_unfocused_disabled_fg_color; }
 
 /* Image effects */
 *:disabled {
@@ -418,11 +403,11 @@ iconview:selected:backdrop, iconview selection:backdrop, iconview text:selected:
     background-color: @theme_unfocused_selected_bg_color; }
 
 rubberband, flowbox rubberband, treeview.view rubberband, .content-view rubberband, .rubberband, view rubberband, .view.rubberband, .rubberband {
-  border-width: 1px;
-  border-style: solid;
-  border-color: @theme_selected_bg_color;
-  background: none;
-  background-color: alpha(@theme_selected_bg_color, 0.3); }
+    border-width: 1px;
+    border-style: solid;
+    border-color: @theme_selected_bg_color;
+    background: none;
+    background-color: alpha(@theme_selected_bg_color, 0.3); }
 
 /* flowbox */
 flowbox flowboxchild {
@@ -772,7 +757,7 @@ popover, popover.background {
     color: @theme_fg_color;
     background-clip: border-box;
     background-color: @theme_bg_color;
-    box-shadow: 0 2px 5px 3px alpha(@dark_shadow, 0.25); }
+    box-shadow: 0 2px 3px 1px alpha(@dark_shadow, 0.25); }
 
 .csd popover, popover, .csd
 popover.background,
@@ -1427,8 +1412,11 @@ combobox separator {
 
 /* sidebar */
 filechooser.csd.background, filechooser placessidebar list, .nautilus-window.csd.background, .nautilus-window placessidebar list {
-    color: @sidebar_fg_color;
     background-color: @sidebar_bg_color; }
+
+filechooser placessidebar.sidebar row.sidebar-row, .nautilus-window placessidebar.sidebar row.sidebar-row {
+    border: none;
+    color: @sidebar_fg_color; }
 
 placessidebar.sidebar row:hover, placessidebar.sidebar view row:hover, placessidebar.sidebar row:selected:hover, placessidebar.sidebar view row:selected:hover {
     color: @sidebar_fg_color;
@@ -1962,13 +1950,14 @@ toolbar menubar {
 
 .vertical.linked spinbutton button:first-child {
     border-width: 1px;
+    border-top-width: 0;
     border-left-width: 1px; }
 
 .vertical.linked spinbutton button:last-child {
     border-width: 0;
-    border-top-width: 1px;
     border-left-width: 1px;
     border-right-width: 1px;
+    border-bottom-width: 1px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0; }
 
@@ -2312,6 +2301,11 @@ button.suggested-action:active, button.suggested-action:checked {
     border-color: mix(@theme_selected_bg_color, @theme_fg_color, 0.1);
     background-color: mix(@theme_selected_bg_color, @theme_fg_color, 0.1); }
 
+button.suggested-action:disabled {
+    border-color: mix(@theme_selected_bg_color, @theme_disabled_bg_color, 0.2);
+    color: mix(@theme_selected_fg_color, @theme_disabled_fg_color, 0.2);
+    background-color: mix(@theme_selected_bg_color, @theme_disabled_bg_color, 0.2); }
+
 button.suggested-action:backdrop {
     border-color: @theme_unfocused_selected_bg_color;
     color: @theme_unfocused_selected_fg_color;
@@ -2442,7 +2436,7 @@ tooltip.csd decoration {
     background-color: alpha(@light_shadow, 0.95);
     box-shadow: none; }
 
-/* messagedialog */
+/* message dialog */
 messagedialog.background.csd {
 	border-radius: 0 0 3px 3px;
 	color: @theme_fg_color;
@@ -2451,6 +2445,9 @@ messagedialog.background.csd {
 messagedialog.csd decoration {
     border-radius: 3px;
     box-shadow: 0 1px 2px alpha(@dark_shadow, 0.2); }
+
+messagedialog .titlebar.horizontal {
+    background-color: @theme_bg_color; }
 
 messagedialog.csd .dialog-action-area button {
     border-bottom-style: none; }
@@ -2491,15 +2488,17 @@ messagedialog.csd .dialog-action-area button:only-child {
     color: mix(@error_bg_color, @theme_bg_color, 0.35); }
 
 /* titlebar */
+.titlebar {
+    border-bottom: none;
+    border-radius: 4px 4px 0 0; }
+
 .maximized headerbar, .maximized headerbar:backdrop, .tiled .titlebar:not(headerbar), .tiled .titlebar:backdrop:not(headerbar), .maximized .titlebar:not(headerbar), .maximized .titlebar:backdrop:not(headerbar) {
     border-radius: 0; }
 
 .titlebar, .titlebar:not(headerbar), headerbar.default-decoration, .csd headerbar.default-decoration, .default-decoration.titlebar:not(headerbar), .csd .default-decoration.titlebar:not(headerbar) {
-    border-radius: 4px 4px 0 0;
-    border-bottom-width: 0;
+    min-height: 28px;
     color: @titlebar_fg_color;
-    background-color: @titlebar_bg_color;
-    min-height: 28px; }
+    background-color: @titlebar_bg_color; }
 
 .titlebar:backdrop, .titlebar:not(headerbar):backdrop, headerbar.default-decoration:backdrop, .csd headerbar.default-decoration:backdrop, .default-decoration.titlebar:backdrop:not(headerbar), .csd .default-decoration.titlebar:backdrop:not(headerbar) {
     background-color: @theme_unfocused_bg_color;
