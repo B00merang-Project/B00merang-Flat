@@ -1722,21 +1722,23 @@ headerbar:backdrop, headerbar:not(.titlebar):backdrop {
     background-color: transparent; }
 
 headerbar .title {
-    padding: 0 12px;
+    padding-left: 12px;
+    padding-right: 12px;
     font-weight: bold; }
 
 headerbar .subtitle {
-    padding: 0 12px;
     font-size: smaller;
+    padding-left: 12px;
+    padding-right: 12px;
     color: alpha(currentColor, 0.7); }
 
-headerbar combobox, headerbar button {
+headerbar button {
     padding: 4px 8px;
     border-color: mix(@headerbar_bg_color, @headerbar_fg_color, 0.1);
     color: @headerbar_fg_color;
     background-color: mix(@headerbar_bg_color, @headerbar_fg_color, 0.1); }
 
-headerbar combobox:hover, headerbar button:hover {
+headerbar button:hover {
     border-color: mix(@headerbar_bg_color, @headerbar_fg_color, 0.15);
     color: @headerbar_fg_color;
     background-color: mix(@headerbar_bg_color, @headerbar_fg_color, 0.15); }
@@ -1756,7 +1758,7 @@ headerbar button:active:backdrop, headerbar button:checked:backdrop {
     color: @theme_unfocused_selected_fg_color;
     background-color: @theme_unfocused_selected_bg_color; }
 
-headerbar cobobox:backdrop, headerbar button:backdrop {
+headerbar button:backdrop {
     border-color: @unfocused_borders;
     color: @theme_unfocused_fg_color;
     background-color: @theme_unfocused_bg_color; }
@@ -2465,32 +2467,63 @@ messagedialog.csd .dialog-action-area button:first-child {
 
 messagedialog.csd .dialog-action-area button:only-child {
     border-radius: 0 0 3px 3px; }
-  
-/* titlebutton */
-.titlebar .titlebutton:not(separator) {
-    padding: 0;
-    border: none;
-    border-radius: 100%;
-    color: @titlebar_fg_color;
-    background-color: transparent;
-    -gtk-icon-shadow: none; }
-
-.titlebar .titlebutton:hover {
-    color: @titlebar_fg_color; }
-
-.titlebar .titlebutton:active {
-    color: @titlebar_fg_color; }
-
-.titlebar .titlebutton:backdrop {
-    color: @theme_unfocused_fg_color; }
-
-.titlebar .titlebutton.close, .titlebar .titlebutton.close:hover, .titlebar .titlebutton.close:active, .titlebar .titlebutton.close image, .titlebar .titlebutton.close:hover image, .titlebar .titlebutton.close:active image {
-    color: mix(@error_bg_color, @theme_bg_color, 0.35); }
 
 /* titlebar */
 .titlebar {
     border-bottom: none;
     border-radius: 4px 4px 0 0; }
+
+.titlebar .title {
+    padding-left: 12px;
+    padding-right: 12px;
+    font-weight: bold; }
+
+.titlebar .subtitle {
+    font-size: smaller;
+    padding-left: 12px;
+    padding-right: 12px;
+    color: alpha(currentColor, 0.7); }
+
+.titlebar button {
+    padding: 4px 8px;
+    border-color: mix(@titlebar_bg_color, @titlebar_fg_color, 0.1);
+    color: @titlebar_fg_color;
+    background-color: mix(@titlebar_bg_color, @titlebar_fg_color, 0.1); }
+
+.titlebar button:hover {
+    border-color: mix(@titlebar_bg_color, @titlebar_fg_color, 0.15);
+    color: @titlebar_fg_color;
+    background-color: mix(@titlebar_bg_color, @titlebar_fg_color, 0.15); }
+
+.titlebar button:active, titlebar button:checked {
+    border-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+    background-color: @theme_selected_bg_color; }
+
+.titlebar button:disabled {
+    border-color: mix(@titlebar_bg_color, @theme_disabled_bg_color, 0.1);
+    color: @titlebar_fg_color;
+    background-color: mix(@titlebar_bg_color, @theme_disabled_bg_color, 0.1); }
+
+.titlebar button:active:backdrop, titlebar button:checked:backdrop {
+    border-color: @theme_unfocused_selected_bg_color;
+    color: @theme_unfocused_selected_fg_color;
+    background-color: @theme_unfocused_selected_bg_color; }
+
+.titlebar button:backdrop {
+    border-color: @theme_unfocused_bg_color;
+    color: @theme_unfocused_fg_color;
+    background-color: @theme_unfocused_bg_color; }
+
+.titlebar button:backdrop:checked {
+    border-color: @theme_unfocused_selected_bg_color;
+    color: @theme_unfocused_selected_fg_color;
+    background-color: @theme_unfocused_selected_bg_color; }
+
+.titlebar button:backdrop:disabled {
+    border-color: @theme_unfocused_disabled_bg_color;
+    color: @theme_unfocused_disabled_fg_color;
+    background-color: @theme_unfocused_disabled_bg_color; }
 
 .maximized headerbar, .maximized headerbar:backdrop, .tiled .titlebar:not(headerbar), .tiled .titlebar:backdrop:not(headerbar), .maximized .titlebar:not(headerbar), .maximized .titlebar:backdrop:not(headerbar) {
     border-radius: 0; }
@@ -2503,3 +2536,27 @@ messagedialog.csd .dialog-action-area button:only-child {
 .titlebar:backdrop, .titlebar:not(headerbar):backdrop, headerbar.default-decoration:backdrop, .csd headerbar.default-decoration:backdrop, .default-decoration.titlebar:backdrop:not(headerbar), .csd .default-decoration.titlebar:backdrop:not(headerbar) {
     background-color: @theme_unfocused_bg_color;
     color: @theme_unfocused_fg_color; }
+
+/* titlebutton */
+.titlebar .titlebutton:not(separator) {
+    padding: 0;
+    border: none;
+    border-radius: 100%;
+    color: @titlebar_fg_color;
+    background-color: transparent;
+    -gtk-icon-shadow: none; }
+
+.titlebar .titlebutton:hover {
+    color: @titlebar_fg_color;
+    background-color: transparent; }
+
+.titlebar .titlebutton:active {
+    color: @titlebar_fg_color;
+    background-color: transparent; }
+
+.titlebar .titlebutton:backdrop {
+    color: @theme_unfocused_fg_color;
+    background-color: transparent; }
+
+.titlebar .titlebutton.close, .titlebar .titlebutton.close:hover, .titlebar .titlebutton.close:active, .titlebar .titlebutton.close image, .titlebar .titlebutton.close:hover image, .titlebar .titlebutton.close:active image {
+    color: mix(@error_bg_color, @theme_bg_color, 0.35); }

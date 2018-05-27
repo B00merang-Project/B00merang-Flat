@@ -1,4 +1,4 @@
-/* Normal colors */
+/* Normal state colors */
 @define-color bg_color #003C6A;
 @define-color fg_color #ffffff;
 @define-color base_color shade(@bg_color, 0.75);
@@ -52,7 +52,7 @@
 @define-color outline_color shade(@bg_color, 0.75);
 @define-color unfocused_borders shade(@unfocused_bg_color, 0.95);
 
-/* Notification header backgrounds */
+/* Notification widgets backgrounds */
 @define-color info_fg_color #FFFFFF;
 @define-color info_bg_color #0055FF;
 @define-color warning_fg_color #FFFFFF;
@@ -62,6 +62,7 @@
 @define-color error_fg_color #FFFFFF;
 @define-color error_bg_color #FF0000;
 
+/* Miscellaneous colors */
 @define-color link_color #009988;
 @define-color error_color #CC0000;
 @define-color success_color #00FF00;
