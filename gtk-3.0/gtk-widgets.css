@@ -2002,7 +2002,7 @@ treeview header button {
     border-radius: 0; }
 
 treeview header button, treeview header button:active, treeview header button:focus, treeview header button:active:focus {
-    background-color: shade(@theme_bb_color, 0.97); }
+    background-color: shade(@theme_bg_color, 0.97); }
 
 treeview header button:hover, treeview header button:active:hover, treeview header button:hover:focus, treeview header button:active:hover:focus {
     color: @theme_selected_fg_color;
