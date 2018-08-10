@@ -762,7 +762,7 @@ popover, popover.background {
 .csd popover, popover, .csd
 popover.background,
 popover.background {
-    border: 1px solid #cdd2d7; }
+    border: 1px solid @borders; }
 
 popover.touch-selection, .csd popover.touch-selection, popover.background.touch-selection, .csd popover.background.touch-selection {
     font: initial; }
