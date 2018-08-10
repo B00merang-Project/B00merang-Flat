@@ -254,9 +254,7 @@ view.content-view check, view.content-view check:active, .content-view.view chec
 view.content-view check:hover, view.content-view check:disabled, view.content-view check:selected {
     background-color: transparent; }
 
-/***********
-* calendar *
-************/
+/* calendar */
 calendar {
     padding: 2px;
     border-width: 1px;
@@ -1522,6 +1520,7 @@ spinbutton.vertical button.up {
     border-bottom-width: 0; }
 
 spinbutton.vertical button.down {
+    border-top-width: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0; }
 
@@ -2314,6 +2313,37 @@ button.suggested-action:backdrop {
     background-color: @theme_unfocused_selected_bg_color; }
 
 button.suggested-action:active:backdrop, button.suggested-action:checked:backdrop {
+    border-color: mix(@theme_unfocused_selected_bg_color, @theme_unfocused_fg_color, 0.1);
+    background-color: mix(@theme_unfocused_selected_bg_color, @theme_unfocused_fg_color, 0.1); }
+
+/* suggested action headerbar buttons */
+headerbar button.suggested-action {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    border-color: @theme_selected_bg_color;
+    color: mix(@theme_selected_fg_color, @theme_selected_bg_color, 0.1);
+    background-color: @theme_selected_bg_color; }
+
+headerbar button.suggested-action:hover {
+    border-color: mix(@theme_selected_bg_color, @theme_selected_fg_color, 0.2);
+    background-color: mix(@theme_selected_bg_color, @theme_selected_fg_color, 0.2); }
+
+headerbar button.suggested-action:active, headerbar button.suggested-action:checked {
+    border-color: mix(@theme_selected_bg_color, @theme_fg_color, 0.1);
+    background-color: mix(@theme_selected_bg_color, @theme_fg_color, 0.1); }
+
+headerbar button.suggested-action:disabled {
+    border-color: mix(@theme_selected_bg_color, @theme_disabled_bg_color, 0.2);
+    color: mix(@theme_selected_fg_color, @theme_disabled_fg_color, 0.2);
+    background-color: mix(@theme_selected_bg_color, @theme_disabled_bg_color, 0.2); }
+
+headerbar button.suggested-action:backdrop {
+    border-color: @theme_unfocused_selected_bg_color;
+    color: @theme_unfocused_selected_fg_color;
+    background-color: @theme_unfocused_selected_bg_color; }
+
+headerbar button.suggested-action:active:backdrop, headerbar button.suggested-action:checked:backdrop {
     border-color: mix(@theme_unfocused_selected_bg_color, @theme_unfocused_fg_color, 0.1);
     background-color: mix(@theme_unfocused_selected_bg_color, @theme_unfocused_fg_color, 0.1); }
 
