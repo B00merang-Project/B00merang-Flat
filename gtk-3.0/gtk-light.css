@@ -108,7 +108,6 @@
 
 /* Widgets theming */
 @import url("gtk-widgets.css");
-@import url("gtk-widgets-assets.css");
 
 /* Extra theming */
 @import url("apps/unity.css");
