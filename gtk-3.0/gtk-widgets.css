@@ -317,7 +317,7 @@ menuitem check:indeterminate {
 menuitem check:active:hover {
 	color: @theme_selected_fg_color; }
 menuitem check:disabled {
-	color: @insensitive_fg_color;  }
+	color: @theme_disabled_fg_color;  }
 menuitem radio {
 	-gtk-icon-source: -gtk-scaled(url("assets/radio-unchecked.png"), url("assets/radio-unchecked@2.png"));
 	color: @theme_fg_color;
@@ -329,7 +329,7 @@ menuitem radio:indeterminate {
 menuitem radio:hover {
 	color: @theme_selected_fg_color; }
 menuitem radio:disabled {
-	color: @insensitive_fg_color;  }
+	color: @theme_disabled_fg_color;  }
 
 
 /* content view */
@@ -404,8 +404,8 @@ entry:disabled {
     background-color: @theme_disabled_base_color; }
 
 entry:disabled:backdrop {
-    color: @theme_unfocused_disabled_fg_color;
-    background-color: shade(@theme_unfocused_disabled_bg_color, 0.95); }
+    color: @theme_unfocused_disabled_text_color;
+    background-color: shade(@theme_unfocused_disabled_base_color, 0.95); }
 
 entry:backdrop {
     color: @theme_unfocused_fg_color;
@@ -430,12 +430,6 @@ entry.flat, entry.flat:focus {
 
 entry.search {
     border-radius: 40px; }
-
-.gedit-search-entry-occurrences-tag {
-    color: alpha(currentColor, 0.7);
-    border: none;
-    margin: 2px;
-    padding: 2px; }
 
 /* expander */
 expander arrow {
@@ -468,7 +462,7 @@ list row:selected {
     background-color: @theme_selected_bg_color; }
 
 list row:selected:disabled {
-    color: red;
+    color: alpha(@theme_selected_bg_color, 0.7);
     background-color: @theme_selected_bg_color; }
 
 /* frame */
@@ -722,6 +716,12 @@ arrow, combobox arrow {
 .monospace {
     font-family: Monospace; }
 
+.gedit-search-entry-occurrences-tag {
+    color: alpha(currentColor, 0.7);
+    border: none;
+    margin: 2px;
+    padding: 2px; }
+
 .gedit-search-slider {
     border-color: @borders;
     padding: 6px;
@@ -920,6 +920,29 @@ notebook.frame {
     border-style: solid;
     border-color: @borders }
 
+notebook.frame > header {
+    margin: -1px; }
+    
+notebook.frame > header.top {
+    margin-bottom: 0; }
+
+notebook.frame > header.bottom {
+    margin-top: 0; }
+
+notebook.frame > header.left {
+    margin-right: 0; }
+
+notebook.frame > header.right {
+    margin-left: 0; }
+
+notebook.frame > header.top, notebook.frame > header.bottom {
+    padding-left: 0;
+    padding-right: 0; }
+
+notebook.frame > header.left, notebook.frame > header.right {
+    padding-top: 0;
+    padding-bottom: 0; }
+
 notebook > header {
     background-color: @theme_bg_color; }
 
@@ -1040,6 +1063,9 @@ paned > separator {
 
 paned > separator:selected {
     background-color: @borders; }
+    
+paned > separator:backdrop {
+    background-color: @unfocused_borders; }
 
 paned .sidebar.left, paned .sidebar.right, paned .sidebar.left:dir(rtl), paned .sidebar:dir(rtl), paned .sidebar:dir(ltr), paned .sidebar {
     border-style: none; }
@@ -1239,9 +1265,9 @@ scale {
     padding: 12px; }
 
 scale slider {
-    min-height: 16px;
-    min-width: 16px;
-    margin: -6px; }
+    min-height: 15px;
+    min-width: 15px;
+    margin: -5px; }
 
 scale.fine-tune.horizontal {
     padding-top: 10px;
@@ -2550,7 +2576,7 @@ decoration:backdrop {
     border-radius: 0; }
 
 .popup decoration {
-    box-shadow: none;
+    box-shadow: 0 0 0 1px alpha(@dark_shadow, 0.1);
     border-radius: 0; }
 
 .ssd decoration {
@@ -2560,17 +2586,13 @@ decoration:backdrop {
 .ssd decoration.maximized {
     border-radius: 0; }
   
-.csd.popup decoration {
-    border-radius: 2px;
-    box-shadow: 0 3px 6px alpha(@dark_shadow, 0.1), 0 0 0 1px alpha(@dark_shadow, 0.1); }
-
 tooltip.csd decoration {
     border-radius: 2px;
     box-shadow: 0 1px 3px 1px alpha(@dark_shadow, 0.1); }
 
 .solid-csd decoration {
-    border-radius: 0;
     margin: 1px;
+    border-radius: 0;
     background-color: alpha(@light_shadow, 0.95);
     box-shadow: none; }
 
