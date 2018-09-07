@@ -11,7 +11,7 @@
     color: @desktop_item_fg;
 }
 
-.caja-desktop:selected
+.caja-desktop:selected,
 .nemo-desktop.nemo-canvas-item:selected,
 .nautilus-desktop.nautilus-canvas-item:selected {
     color: @desktop_item_selected_fg;
