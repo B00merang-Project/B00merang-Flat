@@ -800,10 +800,6 @@ menu menuitem, .menu menuitem {
     min-height: 16px;
     min-width: 40px;
     padding: 4px;
-    border: none; }
-
-menu menuitem, .menu menuitem {
-    padding: 3px;
     border: none;
     border-radius: 0;
     color: @menu_fg_color;
