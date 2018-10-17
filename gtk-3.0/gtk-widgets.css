@@ -2024,21 +2024,21 @@ toolbar menubar {
     background-color: @theme_unfocused_selected_bg_color; }
 
 /* linked widgets */
-.linked entry, .linked button, .linked combobox box.linked button {
+.linked entry, .linked button, .linked combobox box.linked button, toolbar button {
     border-radius: 0;
     border-left-width: 0; }
 
-.linked entry:first-child, .linked button:first-child, .linked combobox:first-child box.linked button {
+.linked entry:first-child, .linked button:first-child, .linked combobox:first-child box.linked button, toolbar button:first-child {
     border-left-width: 1px;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px; }
 
-.linked entry:last-child, .linked button:last-child, .linked combobox:last-child box.linked button {
+.linked entry:last-child, .linked button:last-child, .linked combobox:last-child box.linked button, toolbar button:last-child {
     border-left-width: 0;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px; }
 
-.linked entry:only-child, .linked button:only-child, combobox:only-child box.linked button {
+.linked entry:only-child, .linked button:only-child, combobox:only-child box.linked button, toolbar button:only-child {
     border-width: 1px;
     border-radius: 3px; }
 
@@ -2048,26 +2048,26 @@ toolbar menubar {
 .linked entry:first-child:focus {
     box-shadow: none; }
 
-.vertical.linked entry, .vertical.linked button, .vertical.linked combobox box.linked button {
+.vertical.linked entry, .vertical.linked button, .vertical.linked combobox box.linked button, toolbar.vertical button {
     border-left-width: 1px;
     border-top-width: 0;
     border-radius: 0; }
 
-.vertical.linked entry:first-child, .vertical.linked button:first-child, .vertical.linked combobox:first-child box.linked button {
+.vertical.linked entry:first-child, .vertical.linked button:first-child, .vertical.linked combobox:first-child box.linked button, toolbar.vertical button:first-child {
     border-top-width: 1px;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0; }
 
-.vertical.linked entry:last-child, .vertical.linked button:last-child, .vertical.linked combobox:last-child box.linked button {
+.vertical.linked entry:last-child, .vertical.linked button:last-child, .vertical.linked combobox:last-child box.linked button, toolbar.vertical button:last-child {
     border-top-width: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px; }
 
-.vertical.linked entry:only-child, .vertical.linked button:only-child, .vertical.linked combobox .linked:only-child button {
+.vertical.linked entry:only-child, .vertical.linked button:only-child, .vertical.linked combobox .linked:only-child button, toolbar.vertical button:only-child {
     border-top-width: 1px; }
     
 .vertical.linked entry:focus, .vertical.linked entry:last-child:focus {
